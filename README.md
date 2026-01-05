@@ -203,10 +203,3 @@ The script automatically detects available browsers: `chromium`, `chromium-brows
 
 Feel free to use and modify for your personal CV needs!
 
-## Contributing
-
-Contributions welcome! Feel free to:
-- Add new templates
-- Improve existing templates
-- Enhance the CLI tool
-- Fix bugs or improve documentation
