@@ -1,0 +1,127 @@
+name: Jane Smith
+firstname: Jane
+lastname: Smith
+title: Senior Software Engineer & Cloud Architect
+location: Seattle, WA
+phone: (555)-123-4567
+email: jane.smith@example.com
+linkedin: https://www.linkedin.com/in/jane-smith/
+github: https://github.com/janesmith
+
+description: |
+  Senior Software Engineer with 8+ years of experience building scalable cloud-native applications. Specialized in microservices architecture, DevOps practices, and leading cross-functional engineering teams to deliver high-impact solutions.
+
+skills:
+  technical:
+    - Python
+    - Go
+    - TypeScript
+    - React
+    - Node.js
+    - Docker
+    - Kubernetes
+    - GitHub Actions
+  cloud:
+    - AWS
+    - Azure
+    - Terraform
+    - CloudFormation
+  databases:
+    - PostgreSQL
+    - MongoDB
+    - Redis
+    - Elasticsearch
+  tools:
+    - Git
+    - Jenkins
+    - Grafana
+    - Prometheus
+
+languages:
+  - name: English
+    level: Native
+  - name: Mandarin
+    level: B1
+  - name: Japanese
+    level: A2
+
+interests:
+  - name: Open Source
+    details:
+      - Contributor to 15+ projects
+      - Maintainer of popular CLI tool
+  - name: Rock Climbing
+  - name: Gaming
+  - name: Tech Blogging
+
+experience:
+  - title: Senior Software Engineer
+    company: TechVision Inc.
+    company_url: https://example.com/techvision
+    location: Seattle, WA
+    period: Jan 2021 - Present
+    description: Leading backend development for a cloud-based analytics platform serving 500K+ users
+    highlights:
+      - Architected and implemented microservices infrastructure using Kubernetes and AWS EKS, reducing deployment time by 60%
+      - Led team of 5 engineers to deliver real-time data processing pipeline handling 10M+ events per day
+      - Improved API response times by 40% through database optimization and caching strategies
+      - Established CI/CD best practices resulting in 95% reduction in production incidents
+      - Mentored junior engineers and conducted code reviews to maintain high code quality standards
+
+  - title: Software Engineer
+    company: DataFlow Solutions
+    company_url: https://example.com/dataflow
+    location: San Francisco, CA
+    period: Mar 2019 - Dec 2020
+    description: Full-stack development for enterprise SaaS platform with focus on data visualization
+    highlights:
+      - Built interactive dashboards using React and D3.js for complex data analytics
+      - Developed RESTful APIs and GraphQL endpoints serving 100K+ daily requests
+      - Implemented authentication system supporting SSO and OAuth2 integration
+      - Optimized database queries reducing load times from 5s to 500ms
+
+  - title: Junior Developer
+    company: StartupLabs
+    company_url: https://example.com/startuplabs
+    location: Austin, TX
+    period: Jun 2017 - Feb 2019
+    description: Contributing to rapid development of MVP products for early-stage startups
+    highlights:
+      - Developed mobile-responsive web applications using modern JavaScript frameworks
+      - Participated in agile sprints and daily standups with product team
+      - Implemented automated testing achieving 80% code coverage
+      - Collaborated with designers to create pixel-perfect UI implementations
+
+  - title: Software Engineering Intern
+    company: CloudNet Corp
+    company_url: https://example.com/cloudnet
+    location: Boston, MA
+    period: May 2016 - Aug 2016
+    description: Summer internship focused on DevOps automation and infrastructure tooling
+    highlights:
+      - Created automation scripts reducing manual deployment tasks by 50%
+      - Assisted in migration of legacy applications to containerized environments
+
+education:
+  - degree: Bachelor of Science in Computer Science
+    school: University of Washington
+    school_url: https://www.washington.edu
+    location: Seattle, WA
+    period: Sep 2013 - Jun 2017
+    description: Focus on software engineering and distributed systems
+    details:
+      - "GPA: 3.8/4.0"
+      - "Relevant Coursework: Algorithms, Data Structures, Cloud Computing, Machine Learning"
+      - "Senior Project: Real-time collaborative code editor"
+
+  - degree: AWS Certified Solutions Architect - Professional
+    school: Amazon Web Services
+    school_url: https://aws.amazon.com/certification/
+    location: Online
+    period: 2022
+    description: Advanced cloud architecture certification
+
+# SEO/ATS metadata
+meta:
+  description: Jane Smith - Senior Software Engineer & Cloud Architect with 8+ years building scalable cloud applications
+  keywords: Software Engineer, Cloud Architect, AWS, Kubernetes, Python, React, Microservices, DevOps, Full Stack
