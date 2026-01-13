@@ -10,6 +10,7 @@ from pathlib import Path
 
 import yaml
 from jinja2 import Environment, FileSystemLoader, Template
+from pypdf import PdfReader, PdfWriter
 
 
 def load_yaml(yaml_path: Path) -> dict:
@@ -53,23 +54,61 @@ def save_html(content: str, output_path: Path):
         sys.exit(1)
 
 
-def convert_to_pdf(html_path: Path, pdf_path: Path):
-    """Convert HTML to PDF using Chromium."""
+def add_pdf_metadata(pdf_path: Path, data: dict):
+    """Add metadata to PDF file."""
+    try:
+        reader = PdfReader(pdf_path)
+        writer = PdfWriter()
+
+        # Copy all pages
+        for page in reader.pages:
+            writer.add_page(page)
+
+        # Extract metadata from YAML data
+        name = data.get('name', 'Resume')
+        title = data.get('title', 'Resume')
+        meta = data.get('meta', {})
+        description = meta.get('description', f"{name} - {title}")
+        keywords = meta.get('keywords', '')
+
+        # Add metadata
+        writer.add_metadata({
+            '/Title': f"{name} - {title}",
+            '/Author': name,
+            '/Subject': description,
+            '/Keywords': keywords,
+            '/Creator': 'CV Generator (Chromium + pypdf)',
+        })
+
+        # Write to temporary file first, then replace original
+        temp_pdf = pdf_path.with_suffix('.tmp.pdf')
+        with open(temp_pdf, 'wb') as f:
+            writer.write(f)
+
+        # Replace original with metadata-enhanced version
+        temp_pdf.replace(pdf_path)
+
+    except Exception as e:
+        print(f"Warning: Could not add PDF metadata: {e}", file=sys.stderr)
+
+
+def convert_to_pdf(html_path: Path, pdf_path: Path, data: dict):
+    """Convert HTML to PDF using Chromium and add metadata."""
     try:
         # Try common chromium binary names
         chromium_bins = ['chromium', 'chromium-browser', 'google-chrome', 'chrome']
         chromium_cmd = None
-        
+
         for bin_name in chromium_bins:
             if subprocess.run(['which', bin_name], capture_output=True).returncode == 0:
                 chromium_cmd = bin_name
                 break
-        
+
         if not chromium_cmd:
             print("Warning: Chromium/Chrome not found. Skipping PDF conversion.", file=sys.stderr)
             print("Install chromium to enable PDF export.", file=sys.stderr)
             return
-        
+
         cmd = [
             chromium_cmd,
             '--headless',
@@ -81,14 +120,16 @@ def convert_to_pdf(html_path: Path, pdf_path: Path):
             f'--print-to-pdf={pdf_path.absolute()}',
             html_path.absolute().as_uri()
         ]
-        
+
         result = subprocess.run(cmd, capture_output=True, text=True)
-        
+
         if result.returncode == 0:
             print(f"PDF saved to: {pdf_path}")
+            # Add metadata to the generated PDF
+            add_pdf_metadata(pdf_path, data)
         else:
             print(f"Error converting to PDF: {result.stderr}", file=sys.stderr)
-            
+
     except Exception as e:
         print(f"Error during PDF conversion: {e}", file=sys.stderr)
 
@@ -168,7 +209,7 @@ Examples:
             pdf_path = export_dir / pdf_filename
         else:
             pdf_path = Path(args.pdf)
-        convert_to_pdf(output_path, pdf_path)
+        convert_to_pdf(output_path, pdf_path, data)
 
 
 if __name__ == '__main__':
